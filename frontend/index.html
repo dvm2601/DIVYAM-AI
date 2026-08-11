@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Divyam AI — an interactive AI resume assistant." />
+  <title>Divyam AI — Resume Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark">D</div>
+        <div>
+          <div class="brand-name">Divyam AI</div>
+          <div class="brand-subtitle">Resume Assistant</div>
+        </div>
+      </div>
+
+      <button class="new-chat" id="newChatBtn">
+        <span class="plus">+</span>
+        <span>New conversation</span>
+      </button>
+
+      <div class="sidebar-section">
+        <div class="section-label">Explore</div>
+        <button class="sidebar-link suggestion-trigger" data-question="Tell me about yourself.">
+          <span>✦</span><span>About Divyam</span>
+        </button>
+        <button class="sidebar-link suggestion-trigger" data-question="What are Divyam's main technical skills?">
+          <span>⌘</span><span>Technical skills</span>
+        </button>
+        <button class="sidebar-link suggestion-trigger" data-question="Tell me about Divyam's projects.">
+          <span>▣</span><span>Projects</span>
+        </button>
+        <button class="sidebar-link suggestion-trigger" data-question="Why should a company hire Divyam?">
+          <span>✓</span><span>Why hire him?</span>
+        </button>
+      </div>
+
+      <div class="sidebar-spacer"></div>
+
+      <div class="sidebar-footer">
+        <a href="#" id="resumeLink">View resume ↗</a>
+        <a href="mailto:divyamarora2601@gmail.com">Contact ↗</a>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="icon-btn mobile-menu" id="mobileMenuBtn" aria-label="Open menu">☰</button>
+        <div class="mobile-title">Divyam AI</div>
+        <div class="topbar-actions">
+          <button class="icon-btn" id="themeBtn" aria-label="Toggle theme" title="Toggle theme">☾</button>
+          <a class="top-link" href="https://github.com/" target="_blank" rel="noreferrer">GitHub ↗</a>
+          <a class="top-link primary-link" href="mailto:divyamarora2601@gmail.com">Contact</a>
+        </div>
+      </header>
+
+      <section class="chat-area" id="chatArea">
+        <div class="welcome" id="welcome">
+          <div class="welcome-mark">D</div>
+          <h1>Ask me about Divyam.</h1>
+          <p>I’m an AI assistant trained to answer questions about Divyam’s background, skills, projects and experience.</p>
+
+          <div class="prompt-grid">
+            <button class="prompt-card suggestion-trigger" data-question="Tell me about yourself.">
+              <span class="prompt-icon">👋</span>
+              <span>Tell me about yourself</span>
+              <small>Get a quick introduction</small>
+            </button>
+            <button class="prompt-card suggestion-trigger" data-question="What are Divyam's strongest technical skills?">
+              <span class="prompt-icon">⚡</span>
+              <span>What are his strongest skills?</span>
+              <small>Technical strengths & tools</small>
+            </button>
+            <button class="prompt-card suggestion-trigger" data-question="Explain Divyam's projects and what he built.">
+              <span class="prompt-icon">🛠</span>
+              <span>Explain his projects</span>
+              <small>See what he has built</small>
+            </button>
+            <button class="prompt-card suggestion-trigger" data-question="Why should a company hire Divyam?">
+              <span class="prompt-icon">🎯</span>
+              <span>Why should we hire him?</span>
+              <small>Fit, strengths & potential</small>
+            </button>
+          </div>
+        </div>
+
+        <div class="messages" id="messages" aria-live="polite"></div>
+      </section>
+
+      <section class="composer-wrap">
+        <form class="composer" id="chatForm">
+          <textarea
+            id="questionInput"
+            rows="1"
+            maxlength="1000"
+            placeholder="Ask anything about Divyam..."
+            aria-label="Ask anything about Divyam"
+          ></textarea>
+          <button class="send-btn" id="sendBtn" type="submit" aria-label="Send message" disabled>
+            <span>↑</span>
+          </button>
+        </form>
+        <div class="composer-note">
+          <span>AI-generated answers are based only on the candidate information provided to the assistant.</span>
+          <span id="statusText">Ready</span>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast"></div>
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
