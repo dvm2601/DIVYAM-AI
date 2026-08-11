@@ -143,6 +143,8 @@ def parse_resume(resume_text): #this function takes in a resume ka string format
     resume = Resume(**data)
     return resume
 
+resume = None  # Global variable to store the parsed resume
+
 #pdf extraction
 def read_pdf(file_path):
     reader = PdfReader(file_path) #Creates a PdfReader object. Now reader has access to everything inside the PDF.
@@ -159,29 +161,34 @@ app = FastAPI() #step 1- create a fastapi app
 # Add this block to allow the frontend to communicate with the backend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # In production, replace "*" with your actual frontend URL
+     allow_origins=[
+        "https://your-frontend.vercel.app"
+    ], # In production, replace "*" with your actual frontend URL
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
 # jab website khule to sabse pehle ye show hoga. aapka homepage hai
-@app.get("/") 
+@app.get("/")
 def home():
-    resume_text = read_pdf(Path("resume latest aug 6.pdf")) #reads the resume.pdf file and stores the text in resume_text variable
-
-    resume = parse_resume(resume_text)
-    print(resume.model_dump_json(indent=4)) #prints the resume in json format in the console
-
     return {
-        "message":"resume text extracted successfully"
+        "message": "Resume assistant is running"
     }
 
-@app.post("/chat") #this is the endpoint for asking questions to the candidate
+@app.on_event("startup")
+def load_resume():
+    global resume
+
+    resume_text = read_pdf(Path("resume latest aug 6.pdf"))
+    resume = parse_resume(resume_text)
+
+    print("Resume parsed successfully!")
+
+@app.post("/chat")
 def chat(request: ChatRequest):
-    resume_text=read_pdf(Path("resume latest aug 6.pdf"))
-    resume=parse_resume(resume_text)
-    answer=ask_candidate(request.question, resume)
+    answer = ask_candidate(request.question, resume)
+
     return {
         "answer": answer
     }
