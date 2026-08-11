@@ -195,7 +195,7 @@ if (savedTheme === "dark") {
 }
 
 // Optional resume link. Put your deployed PDF URL here.
-const RESUME_URL = "";
+const RESUME_URL = "resume latest aug 6.pdf";
 document.getElementById("resumeLink").addEventListener("click", event => {
   if (!RESUME_URL) {
     event.preventDefault();
