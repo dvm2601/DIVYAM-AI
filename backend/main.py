@@ -157,17 +157,17 @@ def read_pdf(file_path):
     return text
 
 
-app = FastAPI() #step 1- create a fastapi app
-# Add this block to allow the frontend to communicate with the backend
+app = FastAPI()
+
 app.add_middleware(
     CORSMiddleware,
-     allow_origins=[
+    allow_origins=[
         "https://divyam-ai-eight.vercel.app"
-    ], # In production, replace "*" with your actual frontend URL
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
-)
+)  
 
 # jab website khule to sabse pehle ye show hoga. aapka homepage hai
 @app.get("/")
