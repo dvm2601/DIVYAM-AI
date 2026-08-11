@@ -161,13 +161,11 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "https://divyam-ai-eight.vercel.app"
-    ],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
-)  
+) 
 
 # jab website khule to sabse pehle ye show hoga. aapka homepage hai
 @app.get("/")
