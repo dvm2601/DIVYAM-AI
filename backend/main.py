@@ -162,7 +162,7 @@ app = FastAPI() #step 1- create a fastapi app
 app.add_middleware(
     CORSMiddleware,
      allow_origins=[
-        "https://your-frontend.vercel.app"
+        "https://divyam-ai-eight.vercel.app/"
     ], # In production, replace "*" with your actual frontend URL
     allow_credentials=True,
     allow_methods=["*"],
