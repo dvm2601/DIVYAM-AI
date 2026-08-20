@@ -13,7 +13,7 @@ if not my_api_key:
     raise ValueError("API KEY KAHA HAI BHAI?")
 
 client = Groq(api_key=my_api_key) # step 4- register as a client, set model, role and content
-model = "llama-3.3-70b-versatile"
+model = "openai/gpt-oss-120b"
 
 class Experience(BaseModel):
     company: str | None = None
